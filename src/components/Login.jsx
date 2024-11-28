@@ -54,8 +54,8 @@ const Login = ({title}) => {
           <DialogHeader>
             <DialogTitle>
               <div className="flex flex-col items-center">
-                <img src="/logo.svg" alt="Website Logo" className="w-16 h-16 mb-4" />
-                <h2 className="text-xl font-semibold">Welcome Back</h2>
+                <img src="/logo-main.jpg" alt="Website Logo" className="w-16 h-16 mb-4 rounded-full"/>
+                <h2 className="text-xl font-semibold">Sign in to GenEd</h2>
               </div>
             </DialogTitle>
           </DialogHeader>

@@ -10,9 +10,9 @@ const Landing = () => {
       <div className='px-20 py-4 shadow-sm border flex justify-between'>
         <div className='flex justify-center item-center'>
           <img 
-            src="/logo.svg" 
+            src="/logo-main.jpg" 
             alt="App Logo" 
-            className="mx-auto w-24 mb-6" 
+            className="mx-auto w-9 rounded-full" 
           />
         </div>
         <Login title="Login"/> 
