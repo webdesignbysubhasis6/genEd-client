@@ -77,8 +77,11 @@ const SideNav = () => {
 
   return (
     <div className="border shadow-md h-screen p-5">
-      <img src={"/logo.svg"} alt="Logo" width={180} height={50} />
-
+      <div className="flex justify-center item-center gap-3">
+      <img className="rounded-full" src={"/logo-main.jpg"} alt="Logo" width={55}  />
+      <div className="text-4xl font-bold text-[#146ef5] mt-1">GenEd</div>
+      </div>
+      
       <hr className="my-5" />
 
       {/* Render filtered menu items */}

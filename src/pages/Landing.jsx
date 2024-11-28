@@ -8,12 +8,13 @@ const Landing = () => {
     <div className="min-h-screen flex flex-col text-gray-800">
       {/* Hero Section */}
       <div className='px-20 py-4 shadow-sm border flex justify-between'>
-        <div className='flex justify-center item-center'>
+        <div className='flex justify-center item-center gap-3'>
           <img 
             src="/logo-main.jpg" 
             alt="App Logo" 
             className="mx-auto w-9 rounded-full" 
           />
+          <div className='text-2xl font-bold text-[#146ef5]'> GenEd</div>
         </div>
         <Login title="Login"/> 
       </div>
