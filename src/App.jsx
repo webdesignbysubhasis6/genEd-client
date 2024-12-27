@@ -10,12 +10,15 @@ import { Toaster } from './components/ui/sonner';
 import Teacher from './components/Teacher';
 import PredictCgpa from './components/PredictCgpa';
 import TrackAttendance from './components/TrackAttendance';
+import ThemeProvider from './components/Theme/ThemeProvider';
+import ThemeToggle from './components/Theme/ThemeToggle';
 
 const App = () => {
   return (
+    // <ThemeProvider defaultTheme="dark">
     <Router>
     <Toaster/>
-
+    {/* <ThemeToggle /> */}
       <Routes>
         {/* Landing page */}
         
@@ -34,6 +37,7 @@ const App = () => {
         </Route>
       </Routes>
     </Router>
+    // </ThemeProvider>
   );
 };
 

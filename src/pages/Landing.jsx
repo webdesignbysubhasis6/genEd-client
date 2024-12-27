@@ -16,7 +16,10 @@ const Landing = () => {
           />
           <div className='text-2xl font-bold text-[#146ef5]'> GenEd</div>
         </div>
-        <Login title="Login"/> 
+        
+        <Login title="Login"/>
+       
+         
       </div>
 
       <div className='grid grid-cols-1 md:grid-cols-5 gap-1'>

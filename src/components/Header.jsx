@@ -23,8 +23,8 @@ const Header = () => {
       <div>
         {/* You can add any branding or additional elements here */}
       </div>
-      <div>
-        <Button onClick={handleLogout}>Logout</Button>
+      <div className=''>
+        <Button  onClick={handleLogout}>Logout</Button>
       </div>
     </div>
   );
