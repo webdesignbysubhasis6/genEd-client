@@ -12,6 +12,7 @@ import PredictCgpa from './components/PredictCgpa';
 import TrackAttendance from './components/TrackAttendance';
 import ThemeProvider from './components/Theme/ThemeProvider';
 import ThemeToggle from './components/Theme/ThemeToggle';
+import TrackByStudent from './components/TrackByStudent';
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="teacher" element={<Teacher />} />
           <Route path="track" element={<TrackAttendance />} />
           <Route path="predict" element={<PredictCgpa />} />
+          <Route path="trackbystudent" element={<TrackByStudent />} />
         </Route>
       </Routes>
     </Router>

@@ -67,6 +67,13 @@ const SideNav = () => {
       path: "/home/predict",
       roles: ["student"], // Accessible by admins only
     },
+    {
+      id: 8,
+      name: "Track By Student",
+      icon: Activity,
+      path: "/home/trackbystudent",
+      roles: ["teacher"], 
+    },
   ];
 
   // Filter menu items based on user role
