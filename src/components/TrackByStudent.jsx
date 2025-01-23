@@ -23,9 +23,10 @@ const TrackByStudent = () => {
   //   handleInputChange();
   // }
   const handleInputChange = (e) => {
+    setId(e.target.value)
     getStudentAttendance();
     getTotalClasses();
-    setId(e.target.value)
+    
     console.log(id);
   };
   
