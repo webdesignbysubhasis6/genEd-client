@@ -22,11 +22,12 @@ const TrackByStudent = () => {
   // const handleButtonClick=()=>{
   //   handleInputChange();
   // }
-  const handleInputChange = (e) => {
-    setId(e.target.value)
+  const handleIdChange = (event) => {
+    setId(event.target.value);
+};
+  const handleClick = () => {
     getStudentAttendance();
     getTotalClasses();
-    
     console.log(id);
   };
   
@@ -193,14 +194,14 @@ const TrackByStudent = () => {
         type="text"
         placeholder="Enter the Student ID"
         value={id}
-        onChange={handleInputChange}
+        onChange={handleIdChange}
         className="border border-gray-300 rounded-md p-2"
       />
 
     </div>
           <MonthSelection selectedMonth={setSelectedMonth} />
           <SemSelection selectedSem={setSelectedSem}/>
-          <Button className='' onClick={handleInputChange} variant="default">
+          <Button className='' onClick={handleClick} variant="default">
         Track
       </Button>
         </div>
