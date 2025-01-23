@@ -93,7 +93,7 @@ const PredictCgpa = () => {
           </div>
         ))}
 
-        <div className='p-8 flex gap-5'>
+        <div className='pt-6 space-y-1'>
           {/* Reset Button */}
         <Button
           type="button"
@@ -132,10 +132,10 @@ const PredictCgpa = () => {
                 <h3 className="text-lg font-semibold mb-2">Predicted CGPA</h3>
                 <p className="text-3xl font-bold text-green-600">{predictedScore.toFixed(2)}</p>
               </div>)}
-              {predictedScore !== null && (<div className="bg-white p-6 rounded-lg shadow-md">
+              {/* {predictedScore !== null && (<div className="bg-white p-6 rounded-lg shadow-md">
                 <h3 className="text-lg font-semibold mb-2">Accuracy</h3>
                 <p className="text-3xl font-bold text-purple-600">94%</p>
-              </div>)}
+              </div>)} */}
             </div>
             </div>
             </div>

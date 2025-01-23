@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import MonthSelection from './MonthSelection'
 import SemSelection from './SemSelection';
-import { attendanceApi } from '@/utils/api';
+import { attendanceApi, monthClassApi } from '@/utils/api';
 import moment from 'moment';
 import VisualList from './VisualList';
 import BarChartComp from './BarChartComp';
@@ -13,6 +13,7 @@ const Dashboard = () => {
   const [attendanceList,setAttendanceList]=useState();
   const [totalPresentData,setTotalPresentData]=useState([]);
   const [totalStudents,setTotalStudents]=useState(0);
+  const [totalClassesData, setTotalClassesData] = useState([]);
     const [presentPercentage,setPresentPercentage]=useState(0);
     const [data,setData]=useState([]);
     const getUniqueRecord = () => {
@@ -34,14 +35,21 @@ const Dashboard = () => {
 
         return uniqueRecord;
     };
-
+    useEffect(()=>{
+      getStudentAttendance(); 
+      getTotalClasses();  
+      
+    },[selectedMonth || selectedSem])
+    useEffect(()=>{
+      getTotalPresentCount(); 
+    },[attendanceList && selectedMonth])
     useEffect(()=>{
         if(attendanceList)
-        {
+        { 
             const total=getUniqueRecord();
             setTotalStudents(total.length);
-            const today=moment().format("D");
-            const PercentagePresent=(attendanceList.length/(total.length*Number(today))*100)
+            const PercentagePresent=totalClassesData.length === 0 
+            ? 0 : (attendanceList.length/(total.length*totalClassesData.length)*100)
             setPresentPercentage(PercentagePresent);
             setData([{
               name:'Total Present',
@@ -60,12 +68,18 @@ const Dashboard = () => {
 
 
 
-  useEffect(()=>{
-    getTotalPresentCount();
-    getStudentAttendance();    
-  },[selectedMonth||selectedSem])
- 
+  
+  
+  const getTotalClasses = async () => {
+    try {
+      const month = moment(selectedMonth).format('MM/YYYY');
+      const response = await monthClassApi.get(`getClasses?semester=${selectedSem}&month=${month}`)
+      setTotalClassesData(response.data.data);
 
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const getStudentAttendance=async()=>{
     try {
       const month=moment(selectedMonth).format('MM/YYYY');
@@ -83,7 +97,7 @@ const Dashboard = () => {
         const response = await attendanceApi.get(`get-monthly-attendance?semester=${selectedSem}&month=${month}`);
         
         setTotalPresentData(response.data);      
-        
+        console.log(totalPresentData);
       } catch (error) {
         console.log(error);
       }

@@ -27,10 +27,11 @@ const BarChartComp = ({attendanceList,totalPresentData}) => {
     },[attendanceList||totalPresentData])
     const formatAttendanceListCount=()=>{
         const totalStudent=getUniqueRecord();
+        const total=totalStudent?.length;
         const result=totalPresentData.map((item=>({
             day:item.day,
             presentCount:item.presentCount,
-            absentCount:Number(totalStudent?.length)-Number(item.presentCount),
+            absentCount:Number(total)-Number(item.presentCount),
         })));
         console.log(result);
         setData(result)

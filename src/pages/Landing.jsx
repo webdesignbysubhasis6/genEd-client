@@ -25,8 +25,8 @@ const Landing = () => {
       <div className='grid grid-cols-1 md:grid-cols-5 gap-1'>
         <div className='md:col-span-3'>
           <header className="bg-white py-16">
-            <div className="pl-20 py-20 pr-8">
-              <div className="text-5xl font-bold text-gray-900 mb-4">
+            <div className="p-20">
+              <div className="text-justify text-5xl font-bold text-gray-900 mb-4">
                 Transform Academic Management
               </div>
               <div className='flex'>
@@ -38,15 +38,15 @@ const Landing = () => {
               </div>
               </div>
               
-              <p className="text-1xl text-gray-600 mb-8">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga animi necessitatibus itaque eaque culpa totam optio aspernatur labore incidunt odio recusandae adipisci veritatis libero id laboriosam, vero fugiat dolores tenetur.
+              <p className="text-justify text-1xl text-gray-600 mb-8">
+              Experience seamless academic management with GenEd. From efficient attendance tracking and insightful analytics to role-based access control and performance prediction, GenEd simplifies complexities, empowering institutions to focus on what matters most—student success. Transform the way you manage academics and embrace a smarter, data-driven approach with GenEd.
               </p>
               <Login title="Get Started"/>              
             </div>
           </header>
         </div>
 
-        <div className='md:col-span-2'>
+        <div className='md:col-span-2 hidden md:block'>
             <img src="./right-Landing.gif" alt="" />
         </div>
       </div>
