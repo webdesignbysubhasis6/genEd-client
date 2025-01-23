@@ -19,16 +19,22 @@ const TrackByStudent = () => {
   const [totalClassesData, setTotalClassesData] = useState([]);
   const [id, setId] = useState('');
   const [data, setData] = useState([]);
+  // const handleButtonClick=()=>{
+  //   handleInputChange();
+  // }
   const handleInputChange = (e) => {
+    getStudentAttendance();
+    getTotalClasses();
     setId(e.target.value)
+    console.log(id);
   };
   
-  useEffect(() => {
-    if (selectedMonth && selectedSem) {
-      getStudentAttendance();
-      getTotalClasses();
-    }
-  }, [selectedMonth, selectedSem])
+  // useEffect(() => {
+  //   if (selectedMonth && selectedSem) {
+  //     getStudentAttendance();
+  //     getTotalClasses();
+  //   }
+  // }, [selectedMonth, selectedSem])
 
   useEffect(() => {
     if (attendanceList && totalClassesData) {
@@ -176,7 +182,7 @@ const TrackByStudent = () => {
   
   return (
     <div className='p-10'>
-      <div className='flex items-center justify-between'>
+      <div className='flex flex-col items-center justify-between sm:flex-row gap-y-2 items-start'>
         <h2 className='font-bold text-2xl'>Track Attendance By Student</h2>
         <div className='flex items-center gap-4'>
         <div className="flex flex-col space-y-4 w-full max-w-sm mx-auto">
@@ -189,9 +195,13 @@ const TrackByStudent = () => {
         onChange={handleInputChange}
         className="border border-gray-300 rounded-md p-2"
       />
+
     </div>
           <MonthSelection selectedMonth={setSelectedMonth} />
           <SemSelection selectedSem={setSelectedSem}/>
+          <Button className='' onClick={handleInputChange} variant="default">
+        Track
+      </Button>
         </div>
       </div>
       <VisualList icon1={<GraduationCap />}
