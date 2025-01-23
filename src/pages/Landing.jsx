@@ -26,7 +26,7 @@ const Landing = () => {
         <div className='md:col-span-3'>
           <header className="bg-white py-16">
             <div className="p-20">
-              <div className="text-justify text-5xl font-bold text-gray-900 mb-4">
+              <div className="text-5xl font-bold text-gray-900 mb-4">
                 Transform Academic Management
               </div>
               <div className='flex'>
