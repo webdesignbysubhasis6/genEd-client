@@ -18,7 +18,10 @@ const monthClassApi = axios.create({
 const gpaApi=axios.create({
     baseURL: import.meta.env.VITE_CGPA_URL
 });
+const feedbackApi=axios.create({
+    baseURL: import.meta.env.VITE_FEEDBACK_URL
+});
 const utilsApi=axios.create({
     baseURL:`${import.meta.env.VITE_BACKEND_URL}/api/utils/v1`
 });
-export {authApi,studentApi,attendanceApi,teacherApi,gpaApi,monthClassApi,utilsApi}
+export {feedbackApi,authApi,studentApi,attendanceApi,teacherApi,gpaApi,monthClassApi,utilsApi}

@@ -74,6 +74,20 @@ const SideNav = () => {
       path: "/home/trackbystudent",
       roles: ["teacher"], 
     },
+    {
+      id: 9,
+      name: "Feedback",
+      icon: Activity,
+      path: "/home/feedback",
+      roles: ["student","teacher"], 
+    },
+    {
+      id: 10,
+      name: "Feedbacks",
+      icon: Activity,
+      path: "/home/feedbacks",
+      roles: ["admin"], 
+    },
   ];
 
   // Filter menu items based on user role
