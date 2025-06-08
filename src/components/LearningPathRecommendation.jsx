@@ -13,6 +13,9 @@ const LearningPathRecommendation = () => {
       DSA: '',
       OS: '',
       Java: '',
+      Python: '',
+      DBMS: '',
+      CN: '',
       Math: '',
     },
   });
@@ -23,7 +26,7 @@ const LearningPathRecommendation = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (['C', 'DSA', 'OS', 'Java', 'Math'].includes(name)) {
+    if (['C', 'DSA', 'OS', 'Java', 'DBMS','CN' ,'Python','Math'].includes(name)) {
       setFormData((prev) => ({
         ...prev,
         subject_wise_grades: {
