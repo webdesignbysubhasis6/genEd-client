@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Activity, LayoutIcon, Microscope, Notebook, School, TrendingUpDown, UserPen } from "lucide-react";
+import { Activity, LayoutIcon, MessageCircle, Microscope, Notebook, Route, School, TrendingUpDown, UserPen } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const SideNav = () => {
@@ -77,16 +77,23 @@ const SideNav = () => {
     {
       id: 9,
       name: "Feedback",
-      icon: Activity,
+      icon: MessageCircle,
       path: "/home/feedback",
       roles: ["student","teacher"], 
     },
     {
       id: 10,
       name: "Feedbacks",
-      icon: Activity,
+      icon: MessageCircle,
       path: "/home/feedbacks",
       roles: ["admin"], 
+    },
+    {
+      id: 11,
+      name: "Recommendation",
+      icon: Route,
+      path: "/home/recommendation",
+      roles: ["student"], 
     },
   ];
 

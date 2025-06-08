@@ -15,6 +15,8 @@ import ThemeToggle from './components/Theme/ThemeToggle';
 import TrackByStudent from './components/TrackByStudent';
 import Feedback from './components/Feedback';
 import Feedbacks from './components/Feedbacks';
+import LearningPathRecommendation from './components/LearningPathRecommendation';
+import LearningPath from './components/LearningPath';
 
 const App = () => {
   return (
@@ -39,6 +41,7 @@ const App = () => {
           <Route path="predict" element={<PredictCgpa />} />
           <Route path="feedback" element={<Feedback />} />
           <Route path="feedbacks" element={<Feedbacks />} /> 
+          <Route path="recommendation" element={<LearningPath />} /> 
           <Route path="trackbystudent" element={<TrackByStudent />} />
         </Route>
       </Routes>

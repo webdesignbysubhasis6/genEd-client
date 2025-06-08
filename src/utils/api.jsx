@@ -24,4 +24,7 @@ const feedbackApi=axios.create({
 const utilsApi=axios.create({
     baseURL:`${import.meta.env.VITE_BACKEND_URL}/api/utils/v1`
 });
-export {feedbackApi,authApi,studentApi,attendanceApi,teacherApi,gpaApi,monthClassApi,utilsApi}
+const recommendApi=axios.create({
+    baseURL:`${import.meta.env.VITE_RECOMMEND_URL}`
+});
+export {recommendApi,feedbackApi,authApi,studentApi,attendanceApi,teacherApi,gpaApi,monthClassApi,utilsApi}
