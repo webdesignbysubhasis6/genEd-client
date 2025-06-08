@@ -13,7 +13,7 @@ const Feedback = () => {
         </div>
 
         {/* Illustration or Visual */}
-        <div className='w-full md:w-1/2 h-full flex items-center justify-center'>
+        <div className='hidden md:flex w-full md:w-1/2 h-full items-center justify-center'>
         <img src="/feedback.svg" alt="Feedback" className='max-h-full object-contain' />
         </div>
 
