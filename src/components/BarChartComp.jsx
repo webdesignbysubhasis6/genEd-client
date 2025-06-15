@@ -46,8 +46,8 @@ const BarChartComp = ({attendanceList,totalPresentData}) => {
   <YAxis />
   <Tooltip />
   <Legend />
-  <Bar dataKey="presentCount" name={"Total Present"} fill="#8884d8" />
-  <Bar dataKey="absentCount" name={"Total Absent"} fill="#82ca9d" />
+  <Bar dataKey="presentCount" name={"Total Present"} fill="#4caf50" />
+  <Bar dataKey="absentCount" name={"Total Absent"} fill="#f44336" />
 </BarChart>
 </ResponsiveContainer>
     </div>

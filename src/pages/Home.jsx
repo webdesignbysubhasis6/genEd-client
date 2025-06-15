@@ -8,10 +8,32 @@ import { Toaster } from '@/components/ui/sonner';
 const Home = () => {
   const navigate = useNavigate();
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+  
+    const [role, setRole] = useState("");
+  
+    useEffect(() => {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        const userRole = parsedUser.role;
 
-  useEffect(() => {
-    navigate('/home/profile');
-  }, []);
+        setRole(userRole); // Still useful if other parts of the component rely on `role`
+
+        // Use the extracted role directly for navigation
+        if (userRole === "student") {
+          navigate("/home/track");
+        } else if (userRole === "teacher") {
+          navigate("/home/dashboard");
+        } else {
+          navigate("/home/dashboard");
+        }
+      }
+    }, []);
+
+  // useEffect(() => {
+
+  //   navigate('/home/profile');
+  // }, []);
 
   const toggleSideNav = () => {
     setIsSideNavOpen((prev) => !prev);
@@ -19,7 +41,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className='md:w-64 fixed hidden md:block'>
+      <div className='bg-[#1A3A6E] md:w-64 fixed hidden md:block'>
         <SideNav />
       </div>
       <div className='md:ml-64'>
@@ -39,7 +61,7 @@ const Home = () => {
       {isSideNavOpen && (
         <div className='fixed inset-0 bg-black bg-opacity-50 z-40' onClick={toggleSideNav}>
           <div
-            className='fixed top-0 left-0 w-64 bg-white h-full z-50 shadow-lg'
+            className='fixed top-0 left-0 w-64 bg-[#1A3A6E] h-full z-50 shadow-lg'
           >
             <SideNav />
           </div>

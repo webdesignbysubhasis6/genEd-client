@@ -3,7 +3,7 @@ import FeedbackForm from './FeedbackForm'
 
 const Feedback = () => {
   return (
-    <div className='p-10'>
+    <div className='p-10 bg-[#dcedf5]'>
       <h2 className='text-2xl font-bold mb-6'>Feedback</h2>
       <div className='flex flex-col-reverse md:flex-row gap-6 border rounded-lg shadow-sm p-5 h-[70vh] items-center justify-between'>
         

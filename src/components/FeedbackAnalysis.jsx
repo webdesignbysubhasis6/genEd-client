@@ -57,46 +57,47 @@ const FeedbackAnalysis = () => {
 
   return (
     <div className="w-full flex flex-col md:flex-row gap-6 h-full">
-      {/* All Feedback */}
-      <div className="w-full md:w-1/2">
-        <h3 className="text-lg font-semibold mb-3">All Feedback</h3>
-        <div className="ag-theme-quartz" style={{ height: 400, width: "100%" }}>
-          <AgGridReact
-            rowData={feedbackList}
-            columnDefs={colDefs}
-            pagination
-            paginationPageSize={5}
-          />
-        </div>
-      </div>
-
-      {/* Pie Chart */}
-      <div className="w-full md:w-1/2 border rounded-lg shadow-sm p-4">
-        <h3 className="font-semibold mb-3">Sentiment Pie Chart</h3>
-        <div className="w-full h-[300px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={pieData}
-                dataKey="value"
-                nameKey="name"
-                outerRadius={80}
-                label
-              >
-                {pieData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[entry.name.toUpperCase()]}
-                  />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+  {/* All Feedback */}
+  <div className="w-full md:w-1/2 bg-white border rounded-2xl shadow-xl p-5 transition-transform duration-300 hover:scale-[1.02]">
+    <h3 className="text-lg font-semibold mb-4 text-[#1A3A6E]">All Feedback</h3>
+    <div className="ag-theme-quartz" style={{ height: 400, width: "100%" }}>
+      <AgGridReact
+        rowData={feedbackList}
+        columnDefs={colDefs}
+        pagination
+        paginationPageSize={5}
+      />
     </div>
+  </div>
+
+  {/* Pie Chart */}
+  <div className="w-full md:w-1/2 bg-white border rounded-2xl shadow-xl p-5 transition-transform duration-300 hover:scale-[1.02]">
+    <h3 className="text-lg font-semibold mb-4 text-[#1A3A6E]">Sentiment Pie Chart</h3>
+    <div className="w-full h-[300px]">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart>
+          <Pie
+            data={pieData}
+            dataKey="value"
+            nameKey="name"
+            outerRadius={80}
+            label
+          >
+            {pieData.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[entry.name.toUpperCase()]}
+              />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  </div>
+</div>
+
   );
 };
 

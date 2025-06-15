@@ -19,14 +19,16 @@ const Header = () => {
   };
 
   return (
-    <div className='p-4 shadow-sm border flex justify-between'>
-      <div>
-        {/* You can add any branding or additional elements here */}
-      </div>
-      <div className=''>
-        <Button  onClick={handleLogout}>Logout</Button>
-      </div>
-    </div>
+    <div></div>
+    // <div className='p-4 shadow-sm border flex justify-between'>
+    //   <div>
+    //     ATTRACTIVE
+    //     {/* You can add any branding or additional elements here */}
+    //   </div>
+    //   <div className=''>
+    //     <Button  onClick={handleLogout}>Logout</Button>
+    //   </div>
+    // </div>
   );
 };
 

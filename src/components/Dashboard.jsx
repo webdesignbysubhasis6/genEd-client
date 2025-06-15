@@ -54,12 +54,12 @@ const Dashboard = () => {
             setData([{
               name:'Total Present',
               value:Number(PercentagePresent.toFixed(1)),
-              fill:"#8884d8" 
+              fill:"#4caf50" 
           },
           {
               name:'Total Absent',
               value:100-Number(PercentagePresent.toFixed(1)),
-              fill:"#82ca9d" 
+              fill:"#f44336" 
           },
       ])
         }
@@ -103,9 +103,9 @@ const Dashboard = () => {
       }
 }
   return (
-    <div className='p-10'>
+    <div className='p-10 bg-[#dcedf5]'>
       <div className='flex items-center justify-between'>
-      <h2 className='font-bold text-2xl'>Dashboard</h2>
+      <h2 className='font-bold text-3xl text-[#1A3A6E]'>Dashboard</h2>
       <div className='flex items-center gap-4'>
         <MonthSelection selectedMonth={setSelectedMonth}/>
         <SemSelection selectedSem={setSelectedSem}/>
@@ -124,14 +124,16 @@ const Dashboard = () => {
 
       {/* <VisualList attendanceList={attendanceList}/> */}
       <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
-        <div className='md:col-span-2'>
-          <BarChartComp attendanceList={attendanceList} totalPresentData={totalPresentData}/>
-        </div>
-        <div>
-          <PieChartComp data={data}/>
-        </div>
+        <div className='md:col-span-2 rounded-2xl shadow-xl border bg-white p-5 transition-transform duration-300 hover:scale-[1.02]'>
+  <BarChartComp attendanceList={attendanceList} totalPresentData={totalPresentData} />
+</div>
+
+<div className='rounded-2xl shadow-xl border bg-white p-5 transition-transform duration-300 hover:scale-[1.02]'>
+  <PieChartComp data={data} />
+</div>
+
       </div>
-    </div>
+      </div>
   )
 }
 
