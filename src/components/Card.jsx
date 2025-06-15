@@ -11,9 +11,9 @@ const Card = ({icon,title,value}) => {
   <h2 className="text-gray-700 font-semibold text-sm">{title}</h2>
   <h2
     className={`text-xl font-bold ${
-      title === "Total Present %"
+      title === "Total Present %" || title === "Total Present"
         ? "text-green-600"
-        : title === "Total Absent %"
+        : title === "Total Absent %" || title === "Total Absent"
         ? "text-red-600"
         : "text-sky-700"
     }`}

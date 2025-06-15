@@ -80,13 +80,14 @@ const DeleteRecord=async (id)=>{
  >
 
     <div className='p-2 rounded-lg border shawdow-sm flex gap-2
-    mb-4 max-w-sm'>
+    mb-4 max-w-sm
+    bg-white rounded-2xl shadow-xl border transition-transform duration-300 hover:scale-[1.01]'>
         <Search/>
         <input type="text" placeholder='Search' 
         className='outline-none w-full'
         onChange={(e)=>setSearchInput(e.target.value)}/>
     </div>
-   <AgGridReact
+   <AgGridReact className='bg-white rounded-2xl shadow-xl border transition-transform duration-300 hover:scale-[1.01]'
        rowData={rowData}
        columnDefs={colDefs}
        quickFilterText={searchInput}

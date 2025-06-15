@@ -35,12 +35,12 @@ const TrackAttendance = () => {
       setData([{
         name: 'Total Present',
         value: Number(PercentagePresent.toFixed(1)),
-        fill: "#8884d8"
+        fill: "#4caf50"
       },
       {
         name: 'Total Absent',
         value: 100 - Number(PercentagePresent.toFixed(1)),
-        fill: "#82ca9d"
+        fill: "#f44336"
       },
       ])
     }
@@ -174,9 +174,9 @@ const TrackAttendance = () => {
   };
   
   return (
-    <div className='p-10'>
+    <div className='p-10 bg-[#dcedf5] min-h-screen'>
       <div className='flex items-center justify-between'>
-        <h2 className='font-bold text-2xl'>Track Attendance</h2>
+        <h2 className='font-bold text-3xl text-[#1A3A6E]'>Track Attendance</h2>
         <div className='flex items-center gap-4'>
           <MonthSelection selectedMonth={setSelectedMonth} />
         </div>
@@ -193,24 +193,24 @@ const TrackAttendance = () => {
       <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
         <div className='md:col-span-2 '>
           <div className='mb-5'>
-            <h1 className='my-2 font-bold text-lg'>Monthly Classes</h1>
+            <h1 className='my-4 font-bold text-2xl text-[#1A3A6E]'>Monthly Classes</h1>
             <div
               className="ag-theme-quartz" // applying the Data Grid theme
               style={{ height: 105 }} // the Data Grid will fill the size of the parent container
             >
-              <AgGridReact
+              <AgGridReact className='bg-white rounded-2xl shadow-xl border transition-transform duration-300 hover:scale-[1.01]'
                 rowData={newRowData}
                 columnDefs={newcolDefs}
               />
             </div>
           </div>
-          <div>
-            <h1 className='my-2 font-bold text-lg'>Monthly Attendance Record</h1>
+          <div className='my-12'>
+            <h1 className='my-4 font-bold text-2xl text-[#1A3A6E]'>Monthly Attendance Record</h1>
             <div
               className="ag-theme-quartz" // applying the Data Grid theme
               style={{ height: 110 }} // the Data Grid will fill the size of the parent container
             >
-              <AgGridReact
+              <AgGridReact className='bg-white rounded-2xl shadow-xl border transition-transform duration-300 hover:scale-[1.01]'
                 rowData={rowData}
                 columnDefs={colDefs}
               />
@@ -218,7 +218,7 @@ const TrackAttendance = () => {
           </div>
 
         </div>
-        <div>
+        <div className='bg-white rounded-2xl shadow-xl border transition-transform duration-300 hover:scale-[1.01]'>
           <PieChartComp data={data} />
         </div>
       </div>
