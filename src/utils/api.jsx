@@ -18,6 +18,9 @@ const monthClassApi = axios.create({
 const gpaApi=axios.create({
     baseURL: import.meta.env.VITE_CGPA_URL
 });
+const cgpaApi=axios.create({
+    baseURL: import.meta.env.VITE_GPA_URL
+});
 const feedbackApi=axios.create({
     baseURL: import.meta.env.VITE_FEEDBACK_URL
 });
@@ -27,4 +30,4 @@ const utilsApi=axios.create({
 const recommendApi=axios.create({
     baseURL:`${import.meta.env.VITE_RECOMMEND_URL}`
 });
-export {recommendApi,feedbackApi,authApi,studentApi,attendanceApi,teacherApi,gpaApi,monthClassApi,utilsApi}
+export {cgpaApi,recommendApi,feedbackApi,authApi,studentApi,attendanceApi,teacherApi,gpaApi,monthClassApi,utilsApi}
