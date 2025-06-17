@@ -183,9 +183,9 @@ const TrackByStudent = () => {
   };
   
   return (
-    <div className='p-10'>
+    <div className='p-10 bg-[#dcedf5] min-h-screen'>
       <div className='flex flex-col items-center justify-between sm:flex-row gap-y-2 items-start'>
-        <h2 className='font-bold text-2xl'>Track Attendance By Student</h2>
+        <h2 className='font-bold text-3xl text-[#1A3A6E]'>Track Attendance By Student</h2>
         <div className='flex items-center gap-4'>
         <div className="flex flex-col space-y-4 w-full max-w-sm mx-auto">
     
@@ -195,7 +195,7 @@ const TrackByStudent = () => {
         placeholder="Enter the Student ID"
         value={id}
         onChange={handleIdChange}
-        className="border border-gray-300 rounded-md p-2"
+        className='border border-gray-300 rounded-md p-2 bg-white shadow-xl border transition-transform duration-300 hover:scale-[1.01]'
       />
 
     </div>
@@ -218,9 +218,9 @@ const TrackByStudent = () => {
       <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
         <div className='md:col-span-2 '>
           <div className='mb-5'>
-            <h1 className='my-2 font-bold text-lg'>Monthly Classes</h1>
+            <h1 className='my-4 font-bold text-2xl text-[#1A3A6E]'>Monthly Classes</h1>
             <div
-              className="ag-theme-quartz" // applying the Data Grid theme
+              className="ag-theme-quartz bg-white rounded-2xl shadow-xl border transition-transform duration-300 hover:scale-[1.01]" // applying the Data Grid theme
               style={{ height: 105 }} // the Data Grid will fill the size of the parent container
             >
               <AgGridReact
@@ -229,10 +229,10 @@ const TrackByStudent = () => {
               />
             </div>
           </div>
-          <div>
-            <h1 className='my-2 font-bold text-lg'>Monthly Attendance Record</h1>
+          <div className='my-12'>
+            <h1 className='my-4 font-bold text-2xl text-[#1A3A6E]'>Monthly Attendance Record</h1>
             <div
-              className="ag-theme-quartz" // applying the Data Grid theme
+              className="ag-theme-quartz bg-white rounded-2xl shadow-xl border transition-transform duration-300 hover:scale-[1.01]" // applying the Data Grid theme
               style={{ height: 110 }} // the Data Grid will fill the size of the parent container
             >
               <AgGridReact
@@ -243,7 +243,7 @@ const TrackByStudent = () => {
           </div>
 
         </div>
-        <div>
+        <div className='bg-white rounded-2xl shadow-xl border transition-transform duration-300 hover:scale-[1.01]'>
           <PieChartComp data={data} />
         </div>
       </div>

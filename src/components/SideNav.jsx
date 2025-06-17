@@ -153,8 +153,8 @@ const SideNav = () => {
 
       {/* Display user info */}
       {user && (
-        <div className="fixed bottom-5 bg-white rounded-xl shadow-md p-2 flex items-center justify-between gap-3 z-10">
-          <div className="border-2 border-[#1A3A6E] flex rounded-lg">
+        <div className="fixed bottom-5 left-2 md:w-60 w-full bg-white rounded-xl shadow-md p-2 flex items-center justify-between gap-3 z-10 md:block hidden">
+          <div className="border-2 border-[#1A3A6E] flex rounded-lg justify-between">
             <Button
               className="flex items-center gap-3 text-md text-black bg-white hover:bg-[#1A3A6E] hover:text-white px-4 py-2"
               onClick={() => setOpenProfile(true)}

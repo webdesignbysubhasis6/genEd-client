@@ -26,9 +26,9 @@ const Attendance = () => {
     }
   }
   return (
-    <div className='p-10'>
-      <h2 className='text-2xl font-bold mb-1'>Take Attendance</h2>
-      <div className='flex flex-col gap-4 p-5 border rounded-lg shadow-sm sm:flex-row'>
+    <div className='p-10 bg-[#dcedf5] min-h-screen'>
+      <h2 className='mb-5 font-bold text-3xl text-[#1A3A6E]'>Take Attendance</h2>
+      <div className='bg-white rounded-2xl shadow-xl border transition-transform duration-300 hover:scale-[1.01] flex flex-col gap-4 p-5 border rounded-lg shadow-sm sm:flex-row'>
         <div className='flex gap-2 items-center'>
           <label>Select Month:</label>
           <MonthSelection selectedMonth={(value)=>setSelectedMonth(value)}/>
