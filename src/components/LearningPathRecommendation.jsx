@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
 import { recommendApi } from '@/utils/api';
 
+const subjectSemesterMap = {
+  1: ['C'],
+  2: ['C', 'DSA'],
+  3: ['C', 'DSA', 'OS'],
+  4: ['C', 'DSA', 'OS', 'Java'],
+  5: ['C', 'DSA', 'OS', 'Java', 'DBMS'],
+  6: ['C', 'DSA', 'OS', 'Java', 'DBMS', 'CN'],
+  7: ['C', 'DSA', 'OS', 'Java', 'DBMS', 'CN', 'Python'],
+  8: ['C', 'DSA', 'OS', 'Java', 'DBMS', 'CN', 'Python', 'Math'],
+};
+
 const LearningPathRecommendation = () => {
   const [formData, setFormData] = useState({
     student_id: '',
@@ -8,16 +19,7 @@ const LearningPathRecommendation = () => {
     months_to_exam: '',
     months_to_graduation: '',
     attendance_percent: '',
-    subject_wise_grades: {
-      C: '',
-      DSA: '',
-      OS: '',
-      Java: '',
-      Python: '',
-      DBMS: '',
-      CN: '',
-      Math: '',
-    },
+    subject_wise_grades: {},
   });
 
   const [response, setResponse] = useState(null);
@@ -26,7 +28,7 @@ const LearningPathRecommendation = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (['C', 'DSA', 'OS', 'Java', 'DBMS','CN' ,'Python','Math'].includes(name)) {
+    if (Object.values(subjectSemesterMap).flat().includes(name)) {
       setFormData((prev) => ({
         ...prev,
         subject_wise_grades: {
@@ -56,7 +58,7 @@ const LearningPathRecommendation = () => {
         attendance_percent: Number(formData.attendance_percent),
       };
 
-      const res = await recommendApi.post("/generate-learning-path",payload);
+      const res = await recommendApi.post("/generate-learning-path", payload);
       setResponse(res.data);
     } catch (error) {
       console.error('Error:', error);
@@ -66,13 +68,16 @@ const LearningPathRecommendation = () => {
     }
   };
 
+  const currentSemester = Number(formData.current_semester);
+  const allowedSubjects = subjectSemesterMap[currentSemester] || [];
+
   return (
     <div className="w-full px-4 md:px-10 lg:px-20 py-6">
-        <h2 className="text-2xl font-bold mb-4">Generate Learning Path</h2>
-
+      <h2 className="text-2xl font-bold mb-4">Generate Learning Path</h2>
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4 border p-5 rounded-lg shadow-sm bg-white">
+        {/* Basic Inputs */}
         <div>
           <label className="block font-medium mb-1">Student ID</label>
           <input
@@ -92,6 +97,8 @@ const LearningPathRecommendation = () => {
             name="current_semester"
             value={formData.current_semester}
             onChange={handleChange}
+            min="1"
+            max="8"
             className="w-full border rounded px-3 py-2"
             required
           />
@@ -133,15 +140,16 @@ const LearningPathRecommendation = () => {
           />
         </div>
 
+        {/* Dynamic Subject Inputs */}
         <div>
           <h4 className="font-semibold mt-4 mb-2">Subject Wise Grades</h4>
-          {Object.keys(formData.subject_wise_grades).map((subject) => (
+          {allowedSubjects.map((subject) => (
             <div key={subject} className="mb-2">
               <label className="block font-medium mb-1">{subject}</label>
               <input
                 type="number"
                 name={subject}
-                value={formData.subject_wise_grades[subject]}
+                value={formData.subject_wise_grades[subject] || ''}
                 onChange={handleChange}
                 className="w-full border rounded px-3 py-2"
                 required
@@ -159,7 +167,7 @@ const LearningPathRecommendation = () => {
         </button>
       </form>
 
-      {/* Response */}
+      {/* Response Output */}
       {response && (
         <div className="mt-6 border p-5 rounded-lg shadow bg-white">
           <h3 className="text-xl font-semibold mb-4">Recommendation Result</h3>
