@@ -44,12 +44,12 @@ const TrackByStudent = () => {
       setData([{
         name: 'Total Present',
         value: Number(PercentagePresent.toFixed(1)),
-        fill: "#8884d8"
+        fill: "#4caf50"
       },
       {
         name: 'Total Absent',
         value: 100 - Number(PercentagePresent.toFixed(1)),
-        fill: "#82ca9d"
+        fill: "#f44336"
       },
       ])
     }

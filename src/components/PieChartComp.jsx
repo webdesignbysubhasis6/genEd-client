@@ -45,7 +45,7 @@ const PieChartComp = ({data}) => {
     // },[attendanceList])
   return (
     <div className='border p-5 rounded-lg'>
-        <h2 className='my-2 font-bold text-2xl text-[#1A3A6E]'>Monthly Attendance</h2>
+        <h2 className='my-2 font-bold text-2xl text-[#1A3A6E]'>Monthly Attendance(in %)</h2>
         <ResponsiveContainer width={'100%'} height={300}>
               <PieChart width={730} height={250}>
         <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label />

@@ -63,6 +63,18 @@ const AddNewStudent = ({refreshData}) => {
             <label>Select Semester</label>
             <select className='p-3 border rounded-lg'
             {...register('semester',{required:true})}>
+                <option value={"1st"}>
+                    1
+                </option>
+                <option value={"2nd"}>
+                    2
+                </option>
+                <option value={"3rd"}>
+                    3
+                </option>
+                <option value={"4th"}>
+                    4
+                </option>
                 <option value={"5th"}>
                     5
                 </option>
@@ -71,6 +83,9 @@ const AddNewStudent = ({refreshData}) => {
                 </option>
                 <option value={"7th"}>
                     7
+                </option>
+                <option value={"8th"}>
+                    8
                 </option>
             </select>
         </div>

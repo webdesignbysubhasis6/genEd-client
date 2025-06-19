@@ -103,7 +103,7 @@ const Dashboard = () => {
       }
 }
   return (
-    <div className='p-10 bg-[#dcedf5]'>
+    <div className='p-10 bg-[#dcedf5] min-h-screen'>
       <div className='flex items-center justify-between'>
       <h2 className='font-bold text-3xl text-[#1A3A6E]'>Dashboard</h2>
       <div className='flex items-center gap-4'>
