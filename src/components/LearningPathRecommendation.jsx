@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { recommendApi } from '@/utils/api';
+import { recommendApi, recommendSubApi } from '@/utils/api';
 
 const subjectSemesterMap = {
   1: ['C'],
@@ -13,6 +13,7 @@ const subjectSemesterMap = {
 };
 
 const LearningPathRecommendation = () => {
+  const [recommendationType, setRecommendationType] = useState('grade');
   const [formData, setFormData] = useState({
     student_id: '',
     current_semester: '',
@@ -21,7 +22,7 @@ const LearningPathRecommendation = () => {
     attendance_percent: '',
     subject_wise_grades: {},
   });
-
+  const [subject, setSubject] = useState('');
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -44,7 +45,7 @@ const LearningPathRecommendation = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleGradeSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setResponse(null);
@@ -68,107 +69,118 @@ const LearningPathRecommendation = () => {
     }
   };
 
+  const handleSubjectSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setResponse(null);
+
+    try {
+      const res = await recommendSubApi.post("/subject-resources", { subject });
+      setResponse(res.data);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to fetch subject recommendation.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const currentSemester = Number(formData.current_semester);
   const allowedSubjects = subjectSemesterMap[currentSemester] || [];
 
   return (
     <div className="w-full px-4 md:px-10 lg:px-20 py-6">
-      <h2 className="text-2xl font-bold mb-4">Generate Learning Path</h2>
+      <h2 className="text-2xl font-bold mb-6">Select Recommendation Type</h2>
 
-      {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-4 border p-5 rounded-lg shadow-sm bg-white">
-        {/* Basic Inputs */}
-        <div>
-          <label className="block font-medium mb-1">Student ID</label>
-          <input
-            type="text"
-            name="student_id"
-            value={formData.student_id}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
+      <div className="mb-6">
+        <select
+          className="border rounded px-4 py-2"
+          value={recommendationType}
+          onChange={(e) => {
+            setRecommendationType(e.target.value);
+            setResponse(null);
+          }}
+        >
+          <option value="grade">By Grade</option>
+          <option value="subject">By Subject</option>
+        </select>
+      </div>
 
-        <div>
-          <label className="block font-medium mb-1">Current Semester</label>
-          <input
-            type="number"
-            name="current_semester"
-            value={formData.current_semester}
-            onChange={handleChange}
-            min="1"
-            max="8"
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">Months to Exam</label>
-          <input
-            type="number"
-            name="months_to_exam"
-            value={formData.months_to_exam}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">Months to Graduation</label>
-          <input
-            type="number"
-            name="months_to_graduation"
-            value={formData.months_to_graduation}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block font-medium mb-1">Attendance Percentage</label>
-          <input
-            type="number"
-            name="attendance_percent"
-            value={formData.attendance_percent}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-
-        {/* Dynamic Subject Inputs */}
-        <div>
-          <h4 className="font-semibold mt-4 mb-2">Subject Wise Grades</h4>
-          {allowedSubjects.map((subject) => (
-            <div key={subject} className="mb-2">
-              <label className="block font-medium mb-1">{subject}</label>
+      {recommendationType === 'grade' && (
+        <form onSubmit={handleGradeSubmit} className="space-y-4 border p-5 rounded-lg shadow-sm bg-white">
+          {/* Basic Inputs */}
+          {['student_id', 'current_semester', 'months_to_exam', 'months_to_graduation', 'attendance_percent'].map((field) => (
+            <div key={field}>
+              <label className="block font-medium mb-1 capitalize">{field.replace(/_/g, ' ')}</label>
               <input
-                type="number"
-                name={subject}
-                value={formData.subject_wise_grades[subject] || ''}
+                type={field === 'student_id' ? 'text' : 'number'}
+                name={field}
+                value={formData[field]}
                 onChange={handleChange}
                 className="w-full border rounded px-3 py-2"
                 required
               />
             </div>
           ))}
-        </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-        >
-          {loading ? 'Generating...' : 'Get Recommendation'}
-        </button>
-      </form>
+          {/* Subject Wise Grades */}
+          <div>
+            <h4 className="font-semibold mt-4 mb-2">Subject Wise Grades</h4>
+            {allowedSubjects.map((subject) => (
+              <div key={subject} className="mb-2">
+                <label className="block font-medium mb-1">{subject}</label>
+                <input
+                  type="number"
+                  name={subject}
+                  value={formData.subject_wise_grades[subject] || ''}
+                  onChange={handleChange}
+                  className="w-full border rounded px-3 py-2"
+                  required
+                />
+              </div>
+            ))}
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
+            {loading ? 'Generating...' : 'Get Recommendation'}
+          </button>
+        </form>
+      )}
+
+      {recommendationType === 'subject' && (
+        <form onSubmit={handleSubjectSubmit} className="space-y-4 border p-5 rounded-lg shadow-sm bg-white">
+          <div>
+            <label className="block font-medium mb-1">Select Subject</label>
+            <select
+              className="w-full border rounded px-3 py-2"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              required
+            >
+              <option value="">-- Select --</option>
+              {subjectSemesterMap[8].map((subj) => (
+                <option key={subj} value={subj}>
+                  {subj}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
+            {loading ? 'Fetching...' : 'Get Resources'}
+          </button>
+        </form>
+      )}
 
       {/* Response Output */}
-      {response && (
+      {response && recommendationType === 'grade' && (
         <div className="mt-6 border p-5 rounded-lg shadow bg-white">
           <h3 className="text-xl font-semibold mb-4">Recommendation Result</h3>
           <p><strong>Student ID:</strong> {response.student_id}</p>
@@ -199,6 +211,28 @@ const LearningPathRecommendation = () => {
             <ul className="list-disc ml-6 text-gray-800">
               {response.recommendations.map((rec, idx) => (
                 <li key={idx}>{rec}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+
+      {response && recommendationType === 'subject' && (
+        <div className="mt-6 border p-5 rounded-lg shadow bg-white">
+          <h3 className="text-xl font-semibold mb-4">Resources for: {response.subject}</h3>
+          <p><strong>Beginner:</strong> {response.resources.beginner}</p>
+          <p><strong>Intermediate:</strong> {response.resources.intermediate}</p>
+          <p><strong>Advanced:</strong> {response.resources.advanced}</p>
+
+          <div className="mt-4">
+            <h4 className="font-semibold">Courses:</h4>
+            <ul className="list-disc ml-6 text-blue-600">
+              {response.resources.courses.map((course, idx) => (
+                <li key={idx}>
+                  <a href={course.link} target="_blank" rel="noopener noreferrer">
+                    {course.name}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
